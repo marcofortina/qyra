@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: @PACKAGE_NAME@
+Description: A post-quantum hash algorithm resistant to quantum attacks, based on Directed Acyclic Graphs and Kyber.
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lqyra
+Cflags: -I${includedir}

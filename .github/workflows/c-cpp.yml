@@ -1,0 +1,62 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install build tools
+      shell: bash
+      run: |
+        sudo apt-get install autoconf autoconf-archive autotools-dev automake build-essential cmake git libtool pkg-config
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        sudo apt-get install doxygen libboost-dev libcrypto++-dev
+
+    - name: Install Blake3
+      shell: bash
+      run: |
+        git clone https://github.com/BLAKE3-team/BLAKE3.git
+        pushd BLAKE3
+        git checkout tags/1.5.4
+        cd c
+        mkdir build
+        cd build
+        cmake ..
+        make
+        sudo make install
+        popd
+
+    - name: Install Liboqs
+      shell: bash
+      run: |
+        git clone --recurse-submodules https://github.com/open-quantum-safe/liboqs.git
+        pushd liboqs
+        git checkout tags/0.11.0
+        mkdir build
+        cd build
+        cmake ..
+        make
+        sudo make install
+        popd
+
+    - name: Build C and C++ code
+      shell: bash
+      run: |
+        ./autogen.sh
+        ./configure
+        make
+        make docs
+        make test
+        make distcheck

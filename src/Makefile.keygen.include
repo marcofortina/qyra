@@ -1,0 +1,40 @@
+# Copyright (c) 2024 Marco Fortina
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or https://www.opensource.org/licenses/mit-license.php.
+
+# Add qyra-keygen to the list of programs to build
+bin_PROGRAMS += qyra-keygen
+
+# Define the name of the qyra-keygen binary with the executable extension
+KEYGEN_BINARY = qyra-keygen$(EXEEXT)
+
+# Specify source files for the qyra-keygen program
+qyra_keygen_SOURCES = \
+	crypto.cpp \
+	utils.cpp \
+	keygen.cpp \
+	$(QYRA_H)
+
+# Preprocessor flags for qyra-keygen
+qyra_keygen_CPPFLAGS = $(AM_CPPFLAGS) $(QYRA_INCLUDES)
+
+# C++ compiler flags for qyra-keygen
+qyra_keygen_CXXFLAGS = $(AM_CXXFLAGS)
+
+# Linking flags for qyra-keygen
+qyra_keygen_LDFLAGS  = $(AM_LDFLAGS) $(PTHREAD_FLAGS) $(LIBTOOL_APP_LDFLAGS)
+
+# Additional libraries to link with qyra-keygen
+qyra_keygen_LDADD    = $(LIBBLAKE3_LIBS) $(LIBOQS_LIBS) $(LIBCRYPTO_LIBS) $(OPENSSL_LIBS)
+
+# AVX2
+if ENABLE_AVX2
+qyra_keygen_CPPFLAGS += -DOQS_ENABLE_AVX2
+qyra_keygen_CXXFLAGS += $(AVX2_CXXFLAGS)
+endif
+
+# Files to be cleaned during `make clean` for qyra-keygen
+CLEAN_QYRA_KEYGEN = *.gcda *.gcno
+
+# Add qyra-keygen and related files to the clean list
+CLEANFILES += $(CLEAN_QYRA_KEYGEN) $(KEYGEN_BINARY)

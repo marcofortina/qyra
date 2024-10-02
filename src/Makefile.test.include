@@ -1,0 +1,55 @@
+# Copyright (c) 2024 Marco Fortina
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or https://www.opensource.org/licenses/mit-license.php.
+
+# Add qyra-test to the list of programs to build
+bin_PROGRAMS += test/qyra-test
+
+# Directory containing test source files
+TEST_SRCDIR = test
+
+# Define the name of the qyra-test binary with the executable extension
+TEST_BINARY = test/qyra-test$(EXEEXT)
+
+# Specify source files for the qyra-test program
+test_qyra_test_SOURCES = \
+	crypto.cpp \
+	graph.cpp \
+	hash.cpp \
+	path.cpp \
+	qyra.cpp \
+	utils.cpp \
+	test/test.h \
+	test/test.cpp \
+	test/test_api.cpp \
+	test/test_crypter.cpp \
+	test/test_graph.cpp \
+	$(QYRA_H)
+
+# Preprocessor flags for qyra-test
+test_qyra_test_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS) $(QYRA_INCLUDES)
+
+# C++ compiler flags for qyra-test
+test_qyra_test_CXXFLAGS = $(AM_CXXFLAGS)
+
+# Linking flags for qyra-test
+test_qyra_test_LDFLAGS  = $(AM_LDFLAGS) $(PTHREAD_FLAGS) $(LIBTOOL_APP_LDFLAGS)
+
+# Additional libraries to link with qyra-test
+test_qyra_test_LDADD    = $(LIBBLAKE3_LIBS) $(LIBOQS_LIBS) $(LIBCRYPTO_LIBS) $(OPENSSL_LIBS)
+
+# AVX2
+if ENABLE_AVX2
+test_qyra_test_CPPFLAGS += -DOQS_ENABLE_AVX2
+test_qyra_test_CXXFLAGS += $(AVX2_CXXFLAGS)
+endif
+
+# Files to be cleaned during `make clean` for qyra-test
+CLEAN_QYRA_TEST = $(TEST_SRCDIR)/*.gcda $(TEST_SRCDIR)/*.gcno
+
+# Add qyra-test and related files to the clean list
+CLEANFILES += $(CLEAN_QYRA_TEST) $(TEST_BINARY)
+
+# Rule to trigger test execution
+test: all
+	@$(TEST_BINARY)

@@ -1,0 +1,71 @@
+# editors
+.vscode/
+
+# patches
+*.patch
+
+# backups
+*.bz2
+*.gz
+*.tar.gz
+*.tgz
+*.zip
+
+# build
+*.o
+*.a
+*.exe
+libqyra.pc
+release/
+libqyra-*
+
+# build keygen
+src/qyra-keygen
+
+# build benchmarks
+src/bench/qyra-bench
+src/bench/data/*.json.h
+
+# build tests
+src/test/qyra-test
+
+# build docs
+/doc/doxygen/
+
+# libtool object files
+*.lo
+*.la
+
+# autoreconf
+*~
+.deps
+.dirstamp
+.libs
+aclocal.m4
+autom4te.cache/
+build-aux/compile
+build-aux/config.guess
+build-aux/config.sub
+build-aux/depcomp
+build-aux/install-sh
+build-aux/ltmain.sh
+build-aux/m4/libtool.m4
+build-aux/m4/ltoptions.m4
+build-aux/m4/ltsugar.m4
+build-aux/m4/ltversion.m4
+build-aux/m4/lt~obsolete.m4
+build-aux/missing
+config.log
+config.status
+configure
+libtool
+Makefile
+Makefile.in
+doc/Doxyfile
+src/config/qyra-config.h
+src/config/qyra-config.h.in
+src/config/stamp-h1
+
+# examples
+!examples/Makefile
+*.bin

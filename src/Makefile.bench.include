@@ -1,0 +1,73 @@
+# Copyright (c) 2024 Marco Fortina
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or https://www.opensource.org/licenses/mit-license.php.
+
+# Add qyra-bench to the list of programs to build
+bin_PROGRAMS += bench/qyra-bench
+
+# Directory containing bench source files
+BENCH_SRCDIR = bench
+
+# Define the name of the qyra-bench binary with the executable extension
+BENCH_BINARY = bench/qyra-bench$(EXEEXT)
+
+PYTHON_SCRIPT = $(srcdir)/bench/json_to_h.py
+
+JSON_BENCH_FILES = bench/data/solutions.json
+
+GENERATED_BENCH_FILES = $(JSON_BENCH_FILES:.json=.json.h)
+
+QYRA_BENCH = \
+	crypto.cpp \
+	hash.cpp \
+	graph.cpp \
+	path.cpp \
+	utils.cpp \
+	bench/bench.h \
+	bench/bench.cpp \
+	$(QYRA_H) \
+	$(QYRA_COMMON_H)
+
+# Specify source files for the qyra-bench program
+bench_qyra_bench_SOURCES = \
+	bench/data/solutions.json.h \
+	$(QYRA_BENCH) \
+	$(JSON_BENCH_FILES)
+
+# Preprocessor flags for qyra-bench
+bench_qyra_bench_CPPFLAGS = $(AM_CPPFLAGS) $(QYRA_INCLUDES)
+
+# C++ compiler flags for qyra-bench
+bench_qyra_bench_CXXFLAGS = $(AM_CXXFLAGS)
+
+# Linking flags for qyra-bench
+bench_qyra_bench_LDFLAGS  = $(AM_LDFLAGS) $(PTHREAD_FLAGS) $(LIBTOOL_APP_LDFLAGS)
+
+# Additional libraries to link with qyra-bench
+bench_qyra_bench_LDADD    = $(LIBBLAKE3_LIBS) $(LIBOQS_LIBS) $(LIBCRYPTO_LIBS) $(OPENSSL_LIBS)
+
+# AVX2
+if ENABLE_AVX2
+bench_qyra_bench_CPPFLAGS += -DOQS_ENABLE_AVX2
+bench_qyra_bench_CXXFLAGS += $(AVX2_CXXFLAGS)
+endif
+
+nodist_bench_qyra_bench_SOURCES = $(GENERATED_BENCH_FILES)
+
+$(QYRA_BENCH): $(GENERATED_BENCH_FILES)
+
+# Files to be cleaned during `make clean`
+CLEAN_QYRA_BENCH = $(BENCH_SRCDIR)/*.gcda $(BENCH_SRCDIR)/*.gcno
+
+# Add qyra-bench and related files to the clean list
+CLEANFILES += $(CLEAN_QYRA_BENCH) $(BENCH_BINARY) $(GENERATED_BENCH_FILES)
+
+EXTRA_DIST = bench/json_to_h.py
+
+%.json.h: %.json
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) python3 $(PYTHON_SCRIPT) $< "$@"
+
+# Rule to trigger benchmarks execution
+bench: all
+	@$(BENCH_BINARY)
