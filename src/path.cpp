@@ -2,19 +2,18 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
-#include <crypto.h>
+#include <path.h>
+
 #include <graph.h>
 #include <hash.h>
-#include <path.h>
 #include <stream.h>
 #include <utils.h>
 
-#include <algorithm>
+#include <bitset>
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <mutex>
-#include <numeric>
-#include <sstream>
 #include <thread>
 
 // Constructs a CPath from a set of nodes.

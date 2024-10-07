@@ -4,9 +4,13 @@
 
 #include <crypto.h>
 
+// IWYU pragma: no_include <oqs/kem_kyber.h>
+
+#include <cstddef>
 #include <iomanip>
 #include <iostream>
-#include <oqs/oqs.h>
+#include <oqs/oqs.h> // IWYU pragma: keep
+#include <stdint.h>
 
 int main()
 {

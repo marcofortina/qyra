@@ -5,6 +5,7 @@
 #ifndef QYRA_UTILS_H
 #define QYRA_UTILS_H
 
+#include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>

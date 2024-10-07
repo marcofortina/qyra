@@ -3,17 +3,19 @@
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
 #include <crypto.h>
+
 #include <utils.h>
 
-#include <algorithm>
+// IWYU pragma: no_include <oqs/common.h>
+// IWYU pragma: no_include <oqs/kem_kyber.h>
+
 #include <openssl/evp.h>
 #include <openssl/rand.h>
-#include <oqs/oqs.h>
-#include <random>
-#include <stdexcept>
+#include <openssl/types.h>
+#include <oqs/oqs.h> // IWYU pragma: keep
+#include <stdio.h>
+#include <string>
 #include <vector>
-
-#include <iostream>
 
 // Static method to generate a public/secret key pair for encryption.
 bool CCrypter::GenerateKeyPair(uint8_t* public_key, uint8_t* secret_key)

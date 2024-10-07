@@ -25,8 +25,7 @@ QYRA_BENCH = \
 	utils.cpp \
 	bench/bench.h \
 	bench/bench.cpp \
-	$(QYRA_H) \
-	$(QYRA_COMMON_H)
+	$(QYRA_H)
 
 # Specify source files for the qyra-bench program
 bench_qyra_bench_SOURCES = \

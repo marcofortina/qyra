@@ -6,11 +6,32 @@
 
 #include <graph.h>
 #include <path.h>
+#include <qyra.h>
 #include <stream.h>
 #include <utils.h>
 
-#include <boost/test/unit_test.hpp>
+// IWYU pragma: no_include <boost/preprocessor/arithmetic/limits/dec_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/comparison/limits/not_equal_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/control/expr_iif.hpp>
+// IWYU pragma: no_include <boost/preprocessor/control/iif.hpp>
+// IWYU pragma: no_include <boost/preprocessor/detail/limits/auto_rec_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/logical/compl.hpp>
+// IWYU pragma: no_include <boost/preprocessor/logical/limits/bool_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/repetition/detail/limits/for_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/repetition/for.hpp>
+// IWYU pragma: no_include <boost/preprocessor/seq/limits/elem_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/seq/limits/size_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/tuple/elem.hpp>
+// IWYU pragma: no_include <boost/preprocessor/variadic/limits/elem_64.hpp>
+// IWYU pragma: no_include <boost/test/tools/old/interface.hpp>
+// IWYU pragma: no_include <boost/test/tree/auto_registration.hpp>
+// IWYU pragma: no_include <boost/test/unit_test_suite.hpp>
+// IWYU pragma: no_include <boost/test/utils/basic_cstring/basic_cstring.hpp>
+// IWYU pragma: no_include <boost/test/utils/lazy_ostream.hpp>
+
+#include <boost/test/unit_test.hpp> // IWYU pragma: keep
 #include <iostream>
+#include <stdint.h>
 #include <string>
 #include <thread>
 #include <vector>

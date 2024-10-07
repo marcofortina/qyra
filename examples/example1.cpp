@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <stdint.h>
+#include <string>
+#include <vector>
 
 /**
  * @brief Main function that initializes a CQYRA object, sets the header and nonce,

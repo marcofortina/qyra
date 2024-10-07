@@ -5,10 +5,10 @@
 #ifndef QYRA_TEST_H
 #define QYRA_TEST_H
 
-#include <common.h>
+// IWYU pragma: no_include <oqs/kem_kyber.h>
 
 #include <cstdint>
-#include <oqs/oqs.h>
+#include <oqs/oqs.h> // IWYU pragma: keep
 #include <vector>
 
 struct BasicTestingSetup {

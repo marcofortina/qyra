@@ -6,7 +6,6 @@
 #define QYRA_CRYPTO_H
 
 #include <cstdint>
-#include <string>
 #include <vector>
 
 /**

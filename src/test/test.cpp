@@ -6,12 +6,8 @@
 
 #include <test.h>
 
-#include <crypto.h>
-#include <utils.h>
-
+#include <boost/test/included/unit_test.hpp> // IWYU pragma: keep
 #include <vector>
-
-#include <boost/test/included/unit_test.hpp>
 
 BasicTestingSetup::BasicTestingSetup()
 {

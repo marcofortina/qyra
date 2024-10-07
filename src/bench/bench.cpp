@@ -3,17 +3,23 @@
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
 #include <bench.h>
-#include <common.h>
-#include <data/solutions.json.h>
-#include <fstream>
+
 #include <graph.h>
 #include <path.h>
+#include <qyra.h>
 #include <stream.h>
 #include <utils.h>
 
-#include <chrono>
+#include <data/solutions.json.h>
+
+// IWYU pragma: no_include <bits/chrono.h>
+
+#include <chrono> // IWYU pragma: keep
+#include <cstdio>
 #include <iostream>
+#include <limits>
 #include <random>
+#include <string>
 #include <thread>
 #include <vector>
 

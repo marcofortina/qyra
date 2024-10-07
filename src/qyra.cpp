@@ -9,6 +9,7 @@
 #include <stream.h>
 #include <utils.h>
 
+#include <stdio.h>
 #include <thread>
 #include <vector>
 

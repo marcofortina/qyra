@@ -5,7 +5,6 @@
 #ifndef QYRA_HASH_H
 #define QYRA_HASH_H
 
-#include <string>
 #include <vector>
 
 /**

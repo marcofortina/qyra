@@ -5,6 +5,7 @@
 #ifndef QYRA_PATH_H
 #define QYRA_PATH_H
 
+#include <cstddef>
 #include <cstdint>
 #include <mutex>
 #include <string>

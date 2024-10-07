@@ -18,7 +18,7 @@ dist_doc_DATA = README.md LICENSE doc/API.md
 # Custom script for generating files, but not installed
 dist_noinst_SCRIPTS = autogen.sh
 
-# Include all files inside doc/doxygen in the distribution tarball
+# Include all files in the contrib, doc, and examples directories in the distribution tarball
 EXTRA_DIST = \
 	$(wildcard contrib/*) \
 	$(wildcard doc/*) \
@@ -33,31 +33,15 @@ doc/doxygen/.stamp: doc/Doxyfile
 # If Doxygen is available, build the documentation
 if HAVE_DOXYGEN
 docs: doc/doxygen/.stamp
+else
+docs:
+	@echo "error: doxygen not found"
+endif
 
 # Target to clean up the documentation directory
 clean-docs:
 	@echo "Cleaning documentation files..."
 	rm -rf doc/doxygen
-
-# Custom rule to install the entire 'doc' directory
-install-data-local: docs
-	$(MKDIR_P) $(DESTDIR)$(docdir)
-	cp -r doc/doxygen/html $(DESTDIR)$(docdir)
-
-# Remove the installed documentation directory during uninstallation.
-uninstall-local:
-	-rm -rf $(DESTDIR)$(docdir)/html
-
-# Ensure that make docs is run when creating a distribution
-dist-hook:
-	$(MAKE) docs
-
-else
-docs:
-	@echo "error: doxygen not found"
-clean-docs:
-	@echo "error: doxygen not found"
-endif
 
 # Custom clean rule to clean both docs and dist/ directory
 clean-local: clean-docs

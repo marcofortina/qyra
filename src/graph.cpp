@@ -2,10 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or https://www.opensource.org/licenses/mit-license.php.
 
-#include <common.h>
-#include <crypto.h>
 #include <graph.h>
+
+#include <crypto.h>
 #include <hash.h>
+#include <qyra.h>
 #include <stream.h>
 #include <utils.h>
 
@@ -13,10 +14,10 @@
 #include <array>
 #include <cassert>
 #include <fstream>
-#include <iomanip>
-#include <stdexcept>
+#include <stdio.h>
 #include <thread>
 #include <unordered_set>
+#include <utility>
 
 // Constructor of the CGraph class.
 // Initializes the adjacency matrix with a maximum number of nodes.
@@ -51,15 +52,8 @@ bool CGraph::AddEdge(uint16_t from, uint16_t to)
     // Reset the bitset for the 'from' node, clearing all edges from this node.
     adjacencyMatrix[from].reset();
 
-    try {
-        // Set the bit indicating an edge from 'from' to 'to'.
-        adjacencyMatrix[from].set(to);
-    } catch (const std::exception& e) {
-        fprintf(stderr, "ERROR: [%s] Failed to set edge from %u to %u: %s\n", __func__, from, to, e.what());
-
-        // Return false on failure
-        return false;
-    }
+    // Set the bit indicating an edge from 'from' to 'to'.
+    adjacencyMatrix[from].set(to);
 
     // Return true on success
     return true;

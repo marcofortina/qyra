@@ -30,16 +30,13 @@ lib_LTLIBRARIES = libqyra.la
 noinst_LTLIBRARIES =
 
 # Header file to be installed for public API access
-include_HEADERS = include/qyra.h include/common.h
+include_HEADERS = include/qyra.h
 
 # Include directories
-QYRA_INCLUDES=-I$(builddir) -I$(srcdir)/include -I$(srcdir)/test -I$(srcdir)/bench
+QYRA_INCLUDES=-I$(builddir) -I$(srcdir)/include -I$(srcdir)/test -I$(srcdir)/bench -I$(srcdir)/bench/data
 
 QYRA_API_H = \
 	include/qyra.h
-
-QYRA_COMMON_H = \
-	include/common.h
 
 QYRA_H = \
 	crypto.h \
@@ -58,8 +55,7 @@ libqyra_la_SOURCES = \
 	utils.cpp \
 	qyra.cpp \
 	$(QYRA_H) \
-	$(QYRA_API_H) \
-	$(QYRA_COMMON_H)
+	$(QYRA_API_H)
 
 # Preprocessor flags for libqyra
 libqyra_la_CPPFLAGS = $(AM_CPPFLAGS) $(QYRA_INCLUDES)

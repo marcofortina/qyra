@@ -5,8 +5,10 @@
 #ifndef QYRA_BENCH_H
 #define QYRA_BENCH_H
 
+// IWYU pragma: no_include <oqs/kem_kyber.h>
+
 #include <cstdint>
-#include <oqs/oqs.h>
+#include <oqs/oqs.h> // IWYU pragma: keep
 
 // Public key.
 uint8_t publicKey[OQS_KEM_kyber_768_length_public_key] =

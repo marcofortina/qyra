@@ -5,8 +5,12 @@
 #ifndef QYRA_GRAPH_H
 #define QYRA_GRAPH_H
 
+// IWYU pragma: no_include <oqs/kem_kyber.h>
+
 #include <bitset>
-#include <oqs/oqs.h>
+#include <cstddef>
+#include <oqs/oqs.h> // IWYU pragma: keep
+#include <stdint.h>
 #include <string>
 #include <vector>
 

@@ -7,8 +7,8 @@
 #include <ctime>
 #include <endian.h>
 #include <iomanip>
-#include <oqs/oqs.h>
 #include <sstream>
+#include <stdexcept>
 
 // Converts a string to a hexadecimal string.
 std::string FormatHex(const std::string& input)

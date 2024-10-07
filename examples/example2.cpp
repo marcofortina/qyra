@@ -6,7 +6,7 @@
 #include "../src/utils.h"
 #include <qyra.h>
 
-#include <cstdint>
+#include <cstddef>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>

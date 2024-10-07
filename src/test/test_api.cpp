@@ -4,11 +4,23 @@
 
 #include <test.h>
 
-#include <boost/test/unit_test.hpp>
-#include <crypto.h>
 #include <qyra.h>
-#include <stream.h>
 #include <utils.h>
+
+// IWYU pragma: no_include <boost/preprocessor/comparison/limits/not_equal_256.hpp>
+// IWYU pragma: no_include <boost/preprocessor/control/iif.hpp>
+// IWYU pragma: no_include <boost/preprocessor/logical/compl.hpp>
+// IWYU pragma: no_include <boost/preprocessor/logical/limits/bool_256.hpp>
+// IWYU pragma: no_include <boost/test/tools/old/interface.hpp>
+// IWYU pragma: no_include <boost/test/tree/auto_registration.hpp>
+// IWYU pragma: no_include <boost/test/unit_test_suite.hpp>
+// IWYU pragma: no_include <boost/test/utils/basic_cstring/basic_cstring.hpp>
+// IWYU pragma: no_include <boost/test/utils/lazy_ostream.hpp>
+
+#include <boost/test/unit_test.hpp> // IWYU pragma: keep
+#include <iostream>
+#include <string>
+#include <vector>
 
 BOOST_FIXTURE_TEST_SUITE(TestAPI, ExtendedTestingSetup)
 
